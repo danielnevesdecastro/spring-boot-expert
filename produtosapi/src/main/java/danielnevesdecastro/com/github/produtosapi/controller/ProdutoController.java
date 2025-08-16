@@ -4,6 +4,7 @@ import danielnevesdecastro.com.github.produtosapi.model.Produto;
 import danielnevesdecastro.com.github.produtosapi.repository.ProdutoRepository;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
 import java.util.UUID;
 
 @RestController
@@ -25,4 +26,10 @@ public class ProdutoController {
         return produto;
     }
 
+    @GetMapping("/{id}")
+    public Produto obterPorId(@PathVariable("id") String id){
+//        Optional<Produto> produto = produtoRepository.findById(id);
+//        return produto.isPresent() ? produto.get() : null ; //forma literal
+        return produtoRepository.findById(id).orElse(null);
+    }
 }
