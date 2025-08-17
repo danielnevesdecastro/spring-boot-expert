@@ -32,4 +32,15 @@ public class ProdutoController {
 //        return produto.isPresent() ? produto.get() : null ; //forma literal
         return produtoRepository.findById(id).orElse(null);
     }
+
+    @DeleteMapping("{id}")
+    public void deletar(@PathVariable("id") String id){
+        produtoRepository.deleteById(id);
+    }
+
+    @PutMapping("{id}")
+    public Produto atualizar(@PathVariable("id")  String  id , @RequestBody Produto    produto){
+        produto.setId(id);
+        return  produtoRepository.save(produto);
+    }
 }
